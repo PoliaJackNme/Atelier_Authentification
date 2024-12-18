@@ -12,6 +12,11 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd $HOME/www/
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Create sensitive file
+        run: |
+          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
             
   Copy:
     needs: Connexion
@@ -35,12 +40,3 @@ jobs:
               echo "Le répertoire flask de destination sur votre serveur n'existe pas"
               exit 1
             fi
-  create-file:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Create sensitive file
-        run: |
-          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
