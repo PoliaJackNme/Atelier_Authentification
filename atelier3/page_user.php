@@ -2,10 +2,9 @@
 // Démarrer la session
 session_start();
 
-// Vérifier si l'utilisateur est bien en possession d'un cookie valide
-// Dans le cas contraire il sera redirigé vers la page d'accueil de connexion
-if (!isset($_COOKIE['authToken']) || !str_starts_with($_COOKIE['authToken'], 'user_')) {
-    header('Location: index.php');
+// Vérifier si l'utilisateur s'est bienconnecté
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: index.php'); // Dans le cas contraire, l'utilisateur sera redirigé vers la page de connexion
     exit();
 }
 ?>
@@ -15,11 +14,11 @@ if (!isset($_COOKIE['authToken']) || !str_starts_with($_COOKIE['authToken'], 'us
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
+    <title>Page protégée</title>
 </head>
 <body>
-    <h1>Bienvenue sur la page Utilisateur protégée par un Cookie</h1>
-    <p>Vous êtes connecté en tant qu'admin.</p>
+    <h1>Bienvenue sur la page utilisateur de l'atelier 3</h1>
+    <p>Vous êtes connecté en tant que : <?php echo htmlspecialchars($_SESSION['username']); ?></p>
     <a href="logout.php">Se déconnecter</a>
 </body>
 </html>
