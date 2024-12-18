@@ -16,21 +16,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification simple du username et de son password.
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
     if ($username === 'admin' && $password === 'secret') {
-        $cookieuser = bin2hex(random_bytes(16));
-        setcookie('authToken', $cookieuser, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
-        header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
-        exit();
+        $cookieadmin = bin2hex(random_bytes(16));
+        setcookie('authToken', $cookieadmin, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
+        if ('authToken' = $cookieadmin) {
+            header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
+            exit();
+        } else {
+             $error = "Nom d'utilisateur ou mot de passe incorrect.";
+        }
     } else {
         $error = "Nom d'utilisateur ou mot de passe incorrect.";
     }
     if ($username === 'utilisateur' && $password === 'utilisateur') {
         $cookieuser = bin2hex(random_bytes(16));
         setcookie('authToken', $cookieuser, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
-        header('Location: page_user.php'); // L'utilisateur est dirigé vers la page home.php
-        exit();
+        if ('authToken' = $cookieuser) {
+            header('Location: page_user.php'); // L'utilisateur est dirigé vers la page home.php
+            exit();
+        } else {
+             $error = "Nom d'utilisateur ou mot de passe incorrect.";
+        }
     } else {
         $error = "Nom d'utilisateur ou mot de passe incorrect.";
     }
+    
 }
 ?>
 
