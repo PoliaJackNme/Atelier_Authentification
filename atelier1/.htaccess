@@ -1,4 +1,4 @@
-uthName "Accès protégé"                                                                                                                                                
+AuthName "Accès protégé"                                                                                                                                                
 AuthType Basic                                                                                                                                                          
 AuthUserFile /home/poliajacknme-esgi/www/atelier1/.htpasswd                                                                                                             
 Require valid-user 
