@@ -8,7 +8,6 @@ if (isset($_COOKIE['authToken'])) {
     $cookieuser = $_COOKIE['authToken'];
 
     // Afficher un message ou effectuer d'autres actions si le cookie est valide
-    echo "Jeton de session valide : $cookieuser";
 } else {
     // Si le cookie n'existe pas ou est invalide, rediriger vers la page d'accueil
     header('Location: index.php');
