@@ -2,14 +2,9 @@
 // Démarrer la session
 session_start();
 
-// Vérifier si l'utilisateur est en possession d'un cookie valide
-if (isset($_COOKIE['authToken'])) {
-    // Récupérer le jeton depuis le cookie
-    $cookieuser = $_COOKIE['authToken'];
-
-    // Afficher un message ou effectuer d'autres actions si le cookie est valide
-} else {
-    // Si le cookie n'existe pas ou est invalide, rediriger vers la page d'accueil
+// Vérifier si l'utilisateur est bien en possession d'un cookie valide
+// Dans le cas contraire il sera redirigé vers la page d'accueil de connexion
+if (!isset($_COOKIE['authToken']) || !str_starts_with($_COOKIE['authToken'], 'user_')) {
     header('Location: index.php');
     exit();
 }
